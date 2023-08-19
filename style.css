@@ -1,0 +1,25 @@
+body {
+  background: url(noot-noot-meme.gif);
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+ul {
+  padding: 5rem 6rem;
+  font-size: x-large;
+}
+
+li {
+  list-style: none;
+  line-height: 1.5;
+}
+
+a {
+  text-decoration: none;
+  color: red;
+  font-style: bold;
+}
+
+a:hover {
+  color: darkred;
+}
