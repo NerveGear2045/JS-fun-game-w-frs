@@ -96,14 +96,19 @@ document.querySelector('.btn--check').addEventListener('click', function () {
   if (!done) {
     const p1 = Array.from(p1guess.value.toString()).map(Number);
     const p2 = Array.from(p2guess.value.toString()).map(Number);
-    p1array = compare(p1, 1);
-    p2array = compare(p2, 2);
-    displayFeedback.classList.remove('hidden');
-    p1Bull.textContent = p1array[0];
-    p1Cow.textContent = p1array[1];
-    p2Bull.textContent = p2array[0];
-    p2Cow.textContent = p2array[1];
-    p1guess.value = p2guess.value = '';
+    try {
+      p1array = compare(p1, 1);
+      p2array = compare(p2, 2);
+    } catch (error) {
+      console.log(error);
+    } finally {
+      displayFeedback.classList.remove('hidden');
+      p1Bull.textContent = p1array[0];
+      p1Cow.textContent = p1array[1];
+      p2Bull.textContent = p2array[0];
+      p2Cow.textContent = p2array[1];
+      p1guess.value = p2guess.value = '';
+    }
   }
 });
 
@@ -113,7 +118,7 @@ function compare(arrayName, pos) {
   for (let i = 0; i < arrayName.length; i++) {
     if (number.indexOf(arrayName[i], i) === i) {
       arrayTemp[0] += 1; // pos 0 stand for bull
-      if (arrayTemp[0] === level - 1) {
+      if (arrayTemp[0] === level) {
         // bull = level = win
         done = true;
         message.textContent = `Player ${pos} won!`;
